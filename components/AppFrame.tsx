@@ -8,6 +8,8 @@ type Props = {
   title: string;
   onRouteChange: (route: RouteName) => void;
   children: React.ReactNode;
+  userEmail?: string;
+  onSignOut?: () => void;
 };
 
 const navItems: { route: RouteName; label: string }[] = [
@@ -17,14 +19,21 @@ const navItems: { route: RouteName; label: string }[] = [
   { route: "silencio", label: "Silencio" },
 ];
 
-export function AppFrame({ route, title, onRouteChange, children }: Props) {
+export function AppFrame({ route, title, onRouteChange, children, userEmail, onSignOut }: Props) {
   return (
     <div className="appShell">
       <header className="topbar">
         <div className="brandRow">
           <Mark />
           <h1>{title}</h1>
-          <ProfileButton />
+          <div className="accountArea">
+            {userEmail && <span>{userEmail}</span>}
+            {onSignOut ? (
+              <button className="signOutButton" onClick={onSignOut}>Salir</button>
+            ) : (
+              <ProfileButton />
+            )}
+          </div>
         </div>
       </header>
 

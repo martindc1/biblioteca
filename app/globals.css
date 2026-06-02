@@ -1473,3 +1473,94 @@ textarea {
   color: #ffb4c2;
   margin-top: 4px;
 }
+
+
+.authShell {
+  width: min(100%, 460px);
+  min-height: 100svh;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 24px 18px;
+}
+
+.authCard {
+  width: 100%;
+  padding: 24px;
+}
+
+.authBrand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.authCard h1 {
+  margin: 0;
+}
+
+.authCard h2 {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+
+.authCard p {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.authCard label {
+  display: block;
+  margin: 16px 0;
+}
+
+.authCard label span {
+  display: block;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.authCard input {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 18px;
+  border: 1px solid var(--line2);
+  background: rgba(6, 17, 31, .68);
+  color: var(--text);
+  padding: 14px;
+  outline: none;
+}
+
+.authSwitch {
+  margin-top: 10px;
+}
+
+.accountArea {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 70px;
+}
+
+.accountArea span {
+  max-width: 116px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.signOutButton {
+  border: 1px solid rgba(240, 200, 106, .45);
+  background: rgba(240, 200, 106, .08);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+}

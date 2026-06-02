@@ -3,16 +3,56 @@
 import { useMemo, useState } from "react";
 import { AppFrame } from "@/components/AppFrame";
 import { AddWorkScreen } from "@/components/AddWorkScreen";
+import { AuthScreen } from "@/components/AuthScreen";
 import { EditWorkScreen } from "@/components/EditWorkScreen";
 import { HomeScreen } from "@/components/HomeScreen";
 import { MapScreen } from "@/components/MapScreen";
 import { ReadingScreen } from "@/components/ReadingScreen";
 import { SilenceScreen } from "@/components/SilenceScreen";
 import { LibrarianScreen } from "@/components/LibrarianScreen";
+import { useAuth } from "@/lib/use-auth";
 import { useLocalWorks } from "@/lib/use-local-works";
 import type { RouteName } from "@/types";
 
 export default function Page() {
+  const auth = useAuth();
+
+  if (auth.isAuthLoading) {
+    return (
+      <main className="authShell">
+        <section className="card authCard">
+          <h1>Biblioteca</h1>
+          <p>Abriendo tu Biblioteca...</p>
+        </section>
+      </main>
+    );
+  }
+
+  if (auth.isAuthEnabled && !auth.user) {
+    return (
+      <AuthScreen
+        onSignIn={auth.signIn}
+        onSignUp={auth.signUp}
+        authError={auth.authError}
+      />
+    );
+  }
+
+  return (
+    <AuthenticatedBiblioteca
+      userEmail={auth.user?.email}
+      onSignOut={auth.signOut}
+    />
+  );
+}
+
+function AuthenticatedBiblioteca({
+  userEmail,
+  onSignOut,
+}: {
+  userEmail?: string;
+  onSignOut: () => void;
+}) {
   const [route, setRoute] = useState<RouteName>("inicio");
 
   const {
@@ -37,7 +77,13 @@ export default function Page() {
   }, [route]);
 
   return (
-    <AppFrame route={route} title={title} onRouteChange={setRoute}>
+    <AppFrame
+      route={route}
+      title={title}
+      onRouteChange={setRoute}
+      userEmail={userEmail}
+      onSignOut={onSignOut}
+    >
       <div className="storageBanner">
         <span>{isLoading ? "Sincronizando..." : storageMode === "supabase" ? "Nube Supabase activa" : "Modo local"}</span>
         {storageError && <small>{storageError}</small>}

@@ -187,3 +187,23 @@ Tablas requeridas:
 
 Nota de seguridad:
 - Las políticas abiertas sirven para prueba. Para una app pública real hay que agregar Auth y RLS por usuario.
+
+
+## Versión 0.9
+
+Agregado:
+- Login / registro con Supabase Auth.
+- Botón salir.
+- Cada usuario ve solo sus datos.
+- SQL para agregar `user_id` y Row Level Security real.
+- Archivo `supabase_v09_auth.sql`.
+
+Pasos:
+1. Ejecutar `supabase_v09_auth.sql` en Supabase SQL Editor.
+2. Aplicar archivos modificados.
+3. Subir a GitHub.
+4. Redeploy en Vercel.
+5. Crear cuenta desde la app.
+
+Nota:
+- Si Supabase tiene confirmación de email activada, hay que confirmar el correo antes de iniciar sesión.
