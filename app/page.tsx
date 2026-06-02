@@ -26,6 +26,9 @@ export default function Page() {
     deleteHighlight,
     addNote,
     deleteNote,
+    isLoading,
+    storageMode,
+    storageError,
   } = useLocalWorks();
 
   const title = useMemo(() => {
@@ -35,6 +38,11 @@ export default function Page() {
 
   return (
     <AppFrame route={route} title={title} onRouteChange={setRoute}>
+      <div className="storageBanner">
+        <span>{isLoading ? "Sincronizando..." : storageMode === "supabase" ? "Nube Supabase activa" : "Modo local"}</span>
+        {storageError && <small>{storageError}</small>}
+      </div>
+
       {route === "inicio" && (
         <HomeScreen
           works={works}

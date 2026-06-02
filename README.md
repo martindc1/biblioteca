@@ -163,3 +163,27 @@ Agregado:
 Notas:
 - Esta función usa heurísticas simples.
 - Sirve para probar el gesto conceptual del Bibliotecario antes de conectar IA real.
+
+
+## Versión 0.8
+
+Agregado:
+- Conexión cloud-first con Supabase.
+- Obras, notas y resaltados se leen y escriben en Supabase cuando hay variables de entorno configuradas.
+- Si Supabase no está configurado, la app vuelve a modo local con localStorage.
+- Banner de estado: `Nube Supabase activa`, `Modo local` o error de conexión.
+
+Variables necesarias en Vercel y `.env.local`:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_public_key
+```
+
+Tablas requeridas:
+- `works`
+- `notes`
+- `highlights`
+
+Nota de seguridad:
+- Las políticas abiertas sirven para prueba. Para una app pública real hay que agregar Auth y RLS por usuario.
